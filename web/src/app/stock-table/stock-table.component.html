@@ -1,0 +1,16 @@
+<table>
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Bid</th>
+        <th>Ask</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stock of stocks">
+        <td>{{ stock.symbol }}</td>
+        <td>{{ stock.ask }}</td>
+        <td>{{ stock.bid }}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -19,7 +19,8 @@ public class StockUpdatingBackgroundService : BackgroundService
         var counter = 0;
         while (!stoppingToken.IsCancellationRequested)
         {
-            await _hubContext.Clients.All.SendStockUpdate(new StockUpdated("Test", counter, counter + 1.1, DateTimeOffset.Now));
+            await _hubContext.Clients.All.SendStockUpdate(new StockUpdated(new Stock("Test1", counter, counter + 1.1), DateTimeOffset.Now));
+            counter++;
             await Task.Delay(5000, stoppingToken);
         }
     }

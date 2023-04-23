@@ -17,6 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -27,11 +28,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors(policyBuilder =>
+{
+    policyBuilder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyMethod();
+});
 
 app.UseAuthorization();
 
 app.MapControllers();
 app.MapHub<StockHub>("/Stock/Hub");
+
+app.UseHttpsRedirection();
 
 app.Run();

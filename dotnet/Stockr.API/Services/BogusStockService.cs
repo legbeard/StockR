@@ -9,9 +9,9 @@ public class BogusStockService : IStockService
     {
         return new[]
         {
-            new Stock("Test", 1.1, 2.2),
-            new Stock("Test", 1.1, 2.2),
-            new Stock("Test", 1.1, 2.2)
+            new Stock("Test1", 1.1, 2.2),
+            new Stock("Test2", 1.1, 2.2),
+            new Stock("Test3", 1.1, 2.2)
         };
     }
 
