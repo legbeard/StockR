@@ -18,16 +18,12 @@ export class StockTableComponent {
   ngOnInit(){
     this.stocks = []
     this.stockService.getStocks().subscribe(stocks => {
-      console.log("Got initial stocks");
-      console.log(stocks)
       this.stocks = stocks;
     })
     this.stockService.getUpdateStream().subscribe(stockUpdate => this.updateStock(stockUpdate));
   }
 
   updateStock(update: StockUpdated) : void {
-    console.log(update);
-    console.log(this.stocks);
     let stock = this.stocks.find(stock => stock.symbol == update.stock.symbol);
     if(stock){
       stock.ask = update.stock.ask;

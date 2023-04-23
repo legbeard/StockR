@@ -29,8 +29,6 @@ export class StockService {
     this.hubConnection.start()
     .then(_ => {
       this.hubConnection.on('SendStockUpdate', update => {
-        console.log("Received new update:");
-        console.log(update);
         this.stockUpdatedSubject.next(update);
       });
     });
