@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class StockService {
 
   private hubConnection: HubConnection;
-  private stockUpdatedSubject : Subject<StockUpdated>
+  private stockUpdatedSubject : Subject<Stock>
 
   constructor(private http: HttpClient) { 
     this.hubConnection = new HubConnectionBuilder()
@@ -23,7 +23,7 @@ export class StockService {
       })
       .build();
 
-    this.stockUpdatedSubject = new Subject<StockUpdated>();
+    this.stockUpdatedSubject = new Subject<Stock>();
 
     this.hubConnection.start()
     .then(_ => {
@@ -42,7 +42,7 @@ export class StockService {
     return this.http.get<Stock>(`/stock/${symbol}`)
   }
 
-  getUpdateStream(): Observable<StockUpdated>{
+  getUpdateStream(): Observable<Stock>{
     return this.stockUpdatedSubject.asObservable();
   }
 }

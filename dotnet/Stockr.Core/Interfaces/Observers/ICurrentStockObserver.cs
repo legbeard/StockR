@@ -5,5 +5,5 @@ namespace Core.Interfaces.Observers;
 
 public interface ICurrentStockObserver : IGrainObserver
 {
-    Task ReceiveStockUpdate(StockUpdated update);
+    Task ReceiveStockUpdate(Stock update);
 }

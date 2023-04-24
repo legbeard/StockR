@@ -14,7 +14,7 @@ export class StockTableComponent {
   constructor(private stockService: StockService) {}
 
   stocks: Stock[] = [];
-  displayedColumns: string[] = ['symbol', 'ask', 'bid']
+  displayedColumns: string[] = ['symbol', 'bid', 'bid-change', 'ask', 'ask-change']
 
   ngOnInit(){
     this.stocks = []
@@ -24,11 +24,13 @@ export class StockTableComponent {
     this.stockService.getUpdateStream().subscribe(stockUpdate => this.updateStock(stockUpdate));
   }
 
-  updateStock(update: StockUpdated) : void {
-    let stock = this.stocks.find(stock => stock.symbol == update.stock.symbol);
+  updateStock(update: Stock) : void {
+    let stock = this.stocks.find(stock => stock.symbol == update.symbol);
     if(stock){
-      stock.ask = update.stock.ask;
-      stock.bid = update.stock.bid;
+      stock.ask = update.ask;
+      stock.bid = update.bid;
+      stock.askChange = update.askChange;
+      stock.bidChange = update.bidChange;
     }
   }
 }

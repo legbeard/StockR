@@ -34,6 +34,12 @@ services:
       dockerfile: Stockr.StockSimulator/Dockerfile
     environment:
       CLUSTER__CONSULURI: "http://consul:8500"
+      SIMULATOR__STOCKUPDATEINTERVAL: "00:00:01"
+      SIMULATOR__RANDOMIZERSEED: 123
+      SIMULATOR__NUMBEROFSTOCKS: 10
+      SIMULATOR__UPDATESTOCKSSEQUANTIALLY: true
+      SIMULATOR__MAXIMUMSTOCKCHANGEPERCENT: 0.1
+
     depends_on:
       silo:
         condition: service_started

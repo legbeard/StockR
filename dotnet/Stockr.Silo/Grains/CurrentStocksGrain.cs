@@ -22,8 +22,13 @@ public class CurrentStocksGrain: Grain, ICurrentStocksGrain
     
     public Task UpdateStock(StockUpdated update)
     {
-        _stocks[update.Stock.Symbol] = update.Stock;
-        _observerManager.Notify(x => x.ReceiveStockUpdate(update));
+        var symbol = update.Symbol;
+        
+        _stocks[symbol] = _stocks.TryGetValue(symbol, out var stock) 
+            ? new Stock(update, stock) 
+            : new Stock(update);
+
+        _observerManager.Notify(x => x.ReceiveStockUpdate(_stocks[update.Symbol]));
         return Task.CompletedTask;
     }
 

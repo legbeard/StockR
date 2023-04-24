@@ -1,0 +1,46 @@
+
+table {
+    min-width: 464px;
+}
+.mat-column-symbol {
+    width: 64px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.mat-column-bid {
+    width: 100px;
+    text-align: left;
+}
+
+.mat-column-bid-change {
+    width: 100px;
+    text-align: right;
+    font-weight: italic;
+    border-right: 1px solid black;
+}
+
+.mat-column-ask {
+    width: 100px;
+    text-align: left;
+}
+
+.mat-column-ask-change {
+    width: 100px;
+    text-align: right;
+    font-weight: italic;
+    border-right: 1px solid black;
+}
+
+.red {
+    color: red
+}
+
+.green {
+    color: green
+}
+
+.black {
+    color: black
+}

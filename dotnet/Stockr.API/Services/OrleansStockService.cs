@@ -17,15 +17,18 @@ public class OrleansStockService : IStockService
         _hubContext = hubContext;
     }
 
-    public async Task<IEnumerable<Stock>> GetStocks()
+    public async Task<IEnumerable<Stock>> GetCurrentStocks()
     {
-        var grain = _clusterClient.GetGrain<ICurrentStocksGrain>(ICurrentStocksGrain.Name);
-        return await grain.GetCurrentStocks();
+        return await _clusterClient.GetGrain<ICurrentStocksGrain>(ICurrentStocksGrain.Name).GetCurrentStocks();
     }
 
     public async Task<Stock> GetStock(string symbol)
     {
-        var grain = _clusterClient.GetGrain<IStockGrain>(symbol);
-        return await grain.GetStock();
+        return await _clusterClient.GetGrain<IStockGrain>(symbol).GetStock();
+    }
+
+    public async Task<IEnumerable<StockUpdated>> GetHistoricStockValues(string symbol)
+    {
+        return await _clusterClient.GetGrain<IStockGrain>(symbol).GetHistoricUpdates();
     }
 }

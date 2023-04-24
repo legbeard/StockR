@@ -4,6 +4,7 @@ namespace Stockr.API.Interface;
 
 public interface IStockService
 {
-    Task<IEnumerable<Stock>> GetStocks();
+    Task<IEnumerable<Stock>> GetCurrentStocks();
     Task<Stock> GetStock(string symbol);
+    Task<IEnumerable<StockUpdated>> GetHistoricStockValues(string symbol);
 }

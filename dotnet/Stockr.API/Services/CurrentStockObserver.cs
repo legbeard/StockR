@@ -25,7 +25,7 @@ public class CurrentStockObserver : ICurrentStockObserver
         grain.Subscribe(objectReference);
     }
 
-    public async Task ReceiveStockUpdate(StockUpdated update)
+    public async Task ReceiveStockUpdate(Stock update)
     {
         Log.Information("Received stock update for '{symbol}'", update);
         await _hubContext.Clients.All.SendStockUpdate(update);

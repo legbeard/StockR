@@ -1,12 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using Core.Configuration;
+﻿using Core.Configuration;
 using Core.Utilities;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Stockr.Silo;
 
 var configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
@@ -26,9 +22,5 @@ await Host.CreateDefaultBuilder()
     {
         siloBuilder.AddConsulClustering(clusterConfiguration);
         siloBuilder.AddMemoryGrainStorage("stocks");
-        siloBuilder.ConfigureServices(services =>
-        {
-            // services.AddHostedService<StockUpdatingBackgroundService>();
-        });
     })
     .RunConsoleAsync();

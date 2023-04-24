@@ -7,4 +7,5 @@ public interface IStockGrain : IGrainWithStringKey
 {
     Task UpdateStock(StockUpdated update);
     Task<Stock> GetStock();
+    Task<IEnumerable<StockUpdated>> GetHistoricUpdates();
 }

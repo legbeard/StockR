@@ -16,17 +16,27 @@ public class StockController : ControllerBase
     }
     
     [HttpGet("")]
-    public async Task<IActionResult> GetStocks()
+    public async Task<IActionResult> GetCurrentStocks()
     {
-        return Ok(await _stockService.GetStocks());
+        return Ok(await _stockService.GetCurrentStocks());
     }
     
     [HttpGet("{symbol}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Stock))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetStock(string symbol)
     {
         var stock = await _stockService.GetStock(symbol);
         return stock != null ? Ok(stock) : NotFound();
+    }
+
+    [HttpGet("{symbol}/history")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Stock>))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetHistoricStockValues(string symbol)
+    {
+        var historicValues = await _stockService.GetHistoricStockValues(symbol);
+        return historicValues != null && historicValues.Any() ? Ok(historicValues) : NotFound();
     }
 
 }

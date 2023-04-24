@@ -6,7 +6,7 @@ namespace Stockr.API.Hubs;
 
 public interface IStockClient
 {
-    Task SendStockUpdate(StockUpdated stockUpdate);
+    Task SendStockUpdate(Stock stockUpdate);
 }
 
 public class StockHub : Hub<IStockClient>
@@ -17,7 +17,7 @@ public class StockHub : Hub<IStockClient>
     {
         _observer = observer;
     }
-    public async Task UpdateStock(StockUpdated stock)
+    public async Task UpdateStock(Stock stock)
     {
         await Clients.All.SendStockUpdate(stock);
     }
