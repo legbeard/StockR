@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
 import { HttpClient } from '@angular/common/http';
 import { Stock } from '../models/Stock';
 import { Observable, Subject } from 'rxjs';
 import { StockUpdated } from '../models/StockUpdated';
-import { HttpTransportType } from '@aspnet/signalr';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

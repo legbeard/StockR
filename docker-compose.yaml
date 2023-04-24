@@ -5,8 +5,24 @@ services:
       dockerfile: Stockr.API/Dockerfile
     environment:
       ASPNETCORE_URLS: "http://+:8080"
+      CLUSTER__CONSULURI: "http://consul:8500"
     ports: 
       - 8080:8080
+    networks:
+      - stockr
+    depends_on:
+      - silo
+
+  silo:
+    build:
+      context: dotnet
+      dockerfile: Stockr.Silo/Dockerfile
+    environment:
+      CLUSTER__CONSULURI: "http://consul:8500"
+    depends_on:
+      - consul
+    networks:
+      - stockr
 
   web:
     build:
@@ -14,3 +30,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4200:4200
+
+  consul:
+    image: consul:1.15.2
+    networks:
+      - stockr
+
+networks:
+  stockr:

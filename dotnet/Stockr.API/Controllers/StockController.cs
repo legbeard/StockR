@@ -16,16 +16,16 @@ public class StockController : ControllerBase
     }
     
     [HttpGet("")]
-    public IActionResult GetStocks()
+    public async Task<IActionResult> GetStocks()
     {
-        return Ok(_stockService.GetStocks());
+        return Ok(await _stockService.GetStocks());
     }
     
     [HttpGet("{symbol}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Stock))]
-    public IActionResult GetStock(string symbol)
+    public async Task<IActionResult> GetStock(string symbol)
     {
-        var stock = _stockService.GetStock(symbol);
+        var stock = await _stockService.GetStock(symbol);
         return stock != null ? Ok(stock) : NotFound();
     }
 

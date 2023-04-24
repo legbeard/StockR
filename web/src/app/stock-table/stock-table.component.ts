@@ -14,6 +14,7 @@ export class StockTableComponent {
   constructor(private stockService: StockService) {}
 
   stocks: Stock[] = [];
+  displayedColumns: string[] = ['symbol', 'ask', 'bid']
 
   ngOnInit(){
     this.stocks = []

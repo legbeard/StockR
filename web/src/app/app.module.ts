@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StockTableComponent } from './stock-table/stock-table.component';
 import { ApiInterceptor } from './services/api.interceptor';
+import { MatTableModule } from '@angular/material/table'
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ApiInterceptor } from './services/api.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
