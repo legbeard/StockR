@@ -1,0 +1,16 @@
+services:
+  api:
+    build:
+      context: dotnet
+      dockerfile: Stockr.API/Dockerfile
+    environment:
+      ASPNETCORE_URLS: "http://+:8080"
+    ports: 
+      - 8080:8080
+
+  web:
+    build:
+      context: web
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200

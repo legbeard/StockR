@@ -38,6 +38,4 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapHub<StockHub>("/Stock/Hub");
 
-app.UseHttpsRedirection();
-
 app.Run();
