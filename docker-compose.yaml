@@ -10,8 +10,11 @@ services:
       - 8080:8080
     networks:
       - stockr
-    depends_on:
-      - silo
+    depends_on:      
+      silo:
+        condition: service_started
+      consul:
+        condition: service_healthy
 
   silo:
     build:
@@ -20,7 +23,23 @@ services:
     environment:
       CLUSTER__CONSULURI: "http://consul:8500"
     depends_on:
-      - consul
+      consul:
+        condition: service_healthy
+    networks:
+      - stockr
+
+  simulator:
+    build:
+      context: dotnet
+      dockerfile: Stockr.StockSimulator/Dockerfile
+    environment:
+      CLUSTER__CONSULURI: "http://consul:8500"
+    depends_on:
+      silo:
+        condition: service_started
+      consul:
+        condition: service_healthy
+
     networks:
       - stockr
 
@@ -35,6 +54,12 @@ services:
     image: consul:1.15.2
     networks:
       - stockr
+    healthcheck:
+      # return information about the status of the Consul cluster https://www.consul.io/api/status.html
+      test: ["CMD", "curl", "-X", "GET", "localhost:8500/v1/status/leader"]
+      interval: 1s
+      timeout: 3s
+      retries: 60
 
 networks:
   stockr:

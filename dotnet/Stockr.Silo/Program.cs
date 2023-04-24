@@ -28,7 +28,7 @@ await Host.CreateDefaultBuilder()
         siloBuilder.AddMemoryGrainStorage("stocks");
         siloBuilder.ConfigureServices(services =>
         {
-            services.AddHostedService<StockUpdatingBackgroundService>();
+            // services.AddHostedService<StockUpdatingBackgroundService>();
         });
     })
     .RunConsoleAsync();

@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockr.Silo", "Stockr.Silo\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockr.Core", "Stockr.Core\Stockr.Core.csproj", "{7B328A51-73C0-4EF2-81F3-23F4303B4C4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockr.StockSimulator", "Stockr.StockSimulator\Stockr.StockSimulator.csproj", "{CF30A992-C9F6-4CF3-B2D8-CA78604D194E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{7B328A51-73C0-4EF2-81F3-23F4303B4C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B328A51-73C0-4EF2-81F3-23F4303B4C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B328A51-73C0-4EF2-81F3-23F4303B4C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF30A992-C9F6-4CF3-B2D8-CA78604D194E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF30A992-C9F6-4CF3-B2D8-CA78604D194E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF30A992-C9F6-4CF3-B2D8-CA78604D194E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF30A992-C9F6-4CF3-B2D8-CA78604D194E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
