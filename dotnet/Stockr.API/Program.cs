@@ -13,7 +13,6 @@ configuration.GetSection(ClusterConfiguration.Position).Bind(clusterConfiguratio
 var builder = WebApplication.CreateBuilder(args);
 
 var logger =  new LoggerConfiguration()
-    .MinimumLevel.Debug()
     .WriteTo.Console()
     .CreateLogger();
 
@@ -42,6 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(policyBuilder =>
 {
+    // TODO: This should come from configuration
     policyBuilder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyMethod();
 });
 
