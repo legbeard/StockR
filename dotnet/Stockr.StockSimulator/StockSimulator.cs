@@ -23,7 +23,7 @@ public class StockSimulator : BackgroundService
     {
         Randomizer.Seed = new Random(_configuration.RandomizerSeed);
 
-        SeedStocks(GenerateUniqueStockSymbols());
+        await SeedStocks(GenerateUniqueStockSymbols());
 
         // Figure out which strategy to use for getting the index of the next stock
         Func<int, int> indexFunc = _configuration.UpdateStocksSequentially
